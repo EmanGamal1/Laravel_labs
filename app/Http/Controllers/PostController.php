@@ -8,10 +8,7 @@ class PostController extends Controller
 {
     public function test()
     {
-        $books = ['b1', 'b2'];
-
-//        dd($books);
-
+        $books = ['book1', 'book2'];
         return view('test', [
                 'books' => $books,
                 'name' => 'Eman'
@@ -54,7 +51,6 @@ class PostController extends Controller
 
     public function show($id)
     {
-//        dd($id);
         $post = [
             'id' => 3,
             'title' => 'Javascript',
