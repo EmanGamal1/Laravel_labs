@@ -66,4 +66,27 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
+    public function store()
+    {
+        return redirect()->route('posts.index');
+    }
+    public function destroy($post)
+    {
+        return redirect()->route('posts.index');
+    }
+    public function edit($id)
+    {
+        $post = [
+            'id' => 3,
+            'title' => 'Javascript',
+            'description' => 'Hello Javascript',
+            'posted_by' => 'Alaa',
+            'created_at' => '2023-04-01 10:00:00',
+        ];
+        return view('posts.edit', ['post' => $post]);
+    }
+    public function update(Request $request, $id)
+    {
+        return redirect()->route('posts.index');
+    }
 }
