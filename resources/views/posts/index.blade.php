@@ -3,7 +3,9 @@
 @section('title')
     Index
 @endsection
-
+<php
+    use Carbon\Carbon;
+?>
 @section('content')
     <div class="text-center">
         <a href="{{ route('posts.create') }}" class="btn btn-success">Create New Post</a>
@@ -18,17 +20,19 @@
                 <th scope="col">View</th>
                 <th scope="col">Update</th>
                 <th scope="col">Delete</th>
-
             </tr>
         </thead>
         <tbody>
-
             @foreach ($posts as $post)
                 <tr>
                     <td>{{ $post['id'] }}</td>
                     <td>{{ $post['title'] }}</td>
-                    <td>{{ $post['posted_by'] }}</td>
-                    <td>{{ $post['created_at'] }}</td>
+                    @if($post->user)
+                        <td>{{ $post->user->name }}</td>
+                    @else
+                        <td>Guest</td>
+                    @endif
+                    <td>{{ $post->created_at->format('Y-m-d') }}</td>
                     <td><a href="/posts/{{$post['id']}}" class="btn btn-secondary">View</a></td>
                         <td><a href="{{route('posts.edit', ['id' => $post['id']]) }}"><button class="btn btn-primary">Update</button></a></td>
                         <td><form class="deleteFrom d-inline"  onclick="return confirm('Are you sure you want to delete this post?')"
@@ -41,4 +45,6 @@
             @endforeach
         </tbody>
     </table>
+    {{ $posts->links() }}
+
 @endsection
