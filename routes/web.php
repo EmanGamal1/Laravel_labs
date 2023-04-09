@@ -19,6 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::middleware(['auth.post'])->group(function () {
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
@@ -31,3 +33,7 @@ Route::post('posts/{post}/comments', [PostController::class, 'addComment'])->nam
 Route::get('comments/{id}/edit', [PostController::class, 'EditComment'])->name('comments.edit');
 Route::put('/comments/{id}', [PostController::class, 'updateComment'])->name('comments.update');
 Route::delete('posts/{post}/comments', [PostController::class, 'DeleteComment'])->name('comments.destroy');
+});
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

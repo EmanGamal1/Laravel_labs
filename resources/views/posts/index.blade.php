@@ -20,6 +20,7 @@
                 <th scope="col">View</th>
                 <th scope="col">Update</th>
                 <th scope="col">Delete</th>
+                <th scope="col">Slug</th>
             </tr>
         </thead>
         <tbody>
@@ -41,6 +42,7 @@
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger"> Delete</button>
                     </form></td>
+                    <td>{{ $post->slug }}</td>
                 </tr>
             @endforeach
         </tbody>

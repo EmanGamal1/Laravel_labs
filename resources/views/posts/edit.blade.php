@@ -5,7 +5,16 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('posts.update', ['id' => $post['id']]) }}" method="POST">
+@if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form action="{{ route('posts.update', ['id' => $post['id']]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="mb-3">
@@ -25,6 +34,12 @@
                 @endforeach
             </select>
         </div>
+
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image" class="form-control-file" accept=".jpg,.png">
+        </div>
+
         <button class="btn btn-success">Submit</button>
     </form>
 @endsection

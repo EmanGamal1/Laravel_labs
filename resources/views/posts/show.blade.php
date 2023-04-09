@@ -22,7 +22,8 @@
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         </div>
     </div><br>
-
+    <img src="public/{{ $post->image }}" alt="No Post Image">
+              <p>{{ $post->image }}</p><br>
 
     <form action="{{ route('comments.store',['post'=>$post->id]) }}" method="POST">
             @csrf
@@ -49,7 +50,6 @@
                         @method('DELETE')
                 <button class="btn btn-danger">Delete</button>
                 </form>
-
             </div>
         </div>
     @endforeach
